@@ -67,12 +67,27 @@ void controlServo() {
     int photoValue = analogRead(PHOTORESISTOR_PIN);    // Lee el valor del fotorresistor
     float temperature = dht.readTemperature();         // Lee la temperatura del sensor DHT
 
-    if ((photoValue < 300) && (temperature > pote)) {// mayor a 300 es de noche
-      myServo.write(90);
-            Serial.println("Temperatura > pote, Servo a 90 grados.");
+    delay(1000);
+    if (gasValue<430)
+    {
+      
+        if ((photoValue < 300) && (temperature > pote)) {// mayor a 300 es de noche
+            myServo.write(90);
+                Serial.println("Temperatura > pote, Servo a 90 grados.");
+                Serial.println("ESTA DE DIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                delay(1000);
+        }
+        else {
+            myServo.write(0);
+            Serial.println("cierro!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            delay(1000);
+        }
+        
     }
-    else {
-      myServo.write(0);
+    else{
+        myServo.write(90);
+        Serial.println("hay GAAAAAAAAAAAAAAAAAAAAAASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+        delay(1000);
     }
 
 
