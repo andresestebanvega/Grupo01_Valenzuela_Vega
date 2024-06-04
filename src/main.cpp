@@ -89,17 +89,4 @@ void controlServo() {
         Serial.println("hay GAAAAAAAAAAAAAAAAAAAAAASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
         delay(1000);
     }
-
-
- /*   delay(1000);
-
-        // Independientemente de las condiciones de luz y temperatura, si se detecta gas
-    if (gasValue > 511) {                              // Si la lectura del sensor de gas es mayor a la mitad del rango
-        myServo.write(90);                             // Mueve el servo a 90 grados
-        Serial.println("Detección de gas alta, Servo a 90 grados.");
-    }
-        else {
-      myServo.write(0);
-    }
-    */
 }
