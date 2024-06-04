@@ -6,7 +6,7 @@ Servo myServo;                   // Crea un objeto Servo
 DHT dht(DHT_PIN, DHT_TYPE);      // Inicializa el objeto DHT con el pin y tipo definidos
 int pote = 0;
 int gasValue = 0;                // Variable para almacenar la lectura del sensor MQ2                    // Variable para almacenar el valor discretizado del potenciómetro
-
+int histeresis = 5;
 void setup() {
     Serial.begin(9600);          // Inicia la comunicación serial a 9600 bps
     setupPins();                 // Configura los pines
@@ -68,16 +68,16 @@ void controlServo() {
     float temperature = dht.readTemperature();         // Lee la temperatura del sensor DHT
 
     delay(1000);
-    if (gasValue<430)
+    if (gasValue < (430 + histeresis)) 
     {
       
-        if ((photoValue < 300) && (temperature > pote)) {// mayor a 300 es de noche
+        if ((photoValue < (300 + histeresis)) && (temperature > pote)) {// mayor a 300 es de noche
             myServo.write(90);
                 Serial.println("Temperatura > pote, Servo a 90 grados.");
                 Serial.println("ESTA DE DIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 delay(1000);
         }
-        else {
+        else if (gasValue < (430 - histeresis) ){
             myServo.write(0);
             Serial.println("cierro!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             delay(1000);
